@@ -1,6 +1,8 @@
 const request = require("request");
 const secrets = require("./secrets");
 const fs = require("fs");
+var repoOwner = process.argv[2];
+var repoName = process.argv[3];
 
 function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
@@ -16,7 +18,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
-getRepoContributors("hli30", "MTClicker", function(err, result) {
+getRepoContributors(repoOwner, repoName, function(err, result) {
+    if(!repoOwner || !repoName) {
+      throw "Please enter both parameters (repoOwner repoName)."
+    }
     console.log("Errors:", err);
     result = JSON.parse(result);
     result.forEach(function(data) {
