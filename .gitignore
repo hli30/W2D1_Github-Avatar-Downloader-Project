@@ -62,3 +62,6 @@ typings/
 
 # secrets
 secrets.js
+
+# DS_store
+.DS_Store
